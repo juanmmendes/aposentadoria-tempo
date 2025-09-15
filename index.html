@@ -177,7 +177,15 @@
     .about-ph{margin:0}
     .about-ph .frame{display:grid; place-items:center; aspect-ratio:4/3; border:1.5px dashed rgba(255,255,255,.28); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); color:#a7b0c0; font-size:12px}
     .about-ph figcaption{font-size:12px; color:#cbd5e1; margin-top:8px}
-    @media (max-width:960px){ .about-grid{grid-template-columns:1fr} }
+
+    @media (max-width:960px){ .about-grid{grid-template-columns:1fr}
+  
+    .float-wa { display: none !important; }          /* some o botão flutuante */
+    .hero .cta-row a[href^="tel:"]{                  /* some o "Ligar (19)..." no hero */
+    display: none !important; }
+  
+  }
+
   </style>  
 </head>
 <body>
@@ -640,6 +648,19 @@
         })
       });
     })();
+
+    const isMobile = window.matchMedia('(max-width: 960px)').matches;
+const onScroll = () => {
+  const y = window.scrollY || document.documentElement.scrollTop;
+  if(y > 24) header.classList.add('compact'); else header.classList.remove('compact');
+
+  if (isMobile) {
+    floatWa.style.display = 'none';
+  } else {
+    floatWa.style.display = (y > 240) ? 'block' : 'none';
+  }
+};
+
   </script>
 </body>
 </html>
